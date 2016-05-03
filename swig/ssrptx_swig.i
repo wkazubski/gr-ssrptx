@@ -2,7 +2,7 @@
 
 #define SSRPTX_API
 
-%include "gnuradio.i"			// the common stuff
+%include "gnuradio/swig/runtime_swig.i"			// the common stuff
 
 //load generated python docstrings
 %include "ssrptx_swig_doc.i"

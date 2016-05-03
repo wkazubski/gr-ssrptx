@@ -65,7 +65,7 @@ endif()
 
 
 add_library(gnuradio-ssrptx SHARED ${ssrptx_sources})
-target_link_libraries(gnuradio-ssrptx ${Boost_LIBRARIES} ${GRUEL_LIBRARIES} ${GNURADIO_CORE_LIBRARIES} ${LIBUSB_LIBRARIES})
+target_link_libraries(gnuradio-ssrptx ${Boost_LIBRARIES} ${GNURADIO_RUNTIME_LIBRARIES} ${GNURADIO_ALL_LIBRARIES})
 set_target_properties(gnuradio-ssrptx PROPERTIES DEFINE_SYMBOL "gnuradio_ssrptx_EXPORTS")
 
 ########################################################################
@@ -93,8 +93,9 @@ add_executable(test-ssrptx ${test_ssrptx_sources})
 
 target_link_libraries(
   test-ssrptx
-  ${GNURADIO_CORE_LIBRARIES}
   ${Boost_LIBRARIES}
+  ${GNURADIO_RUNTIME_LIBRARIES}
+  ${GNURADIO_ALL_LIBRARIES}
   ${CPPUNIT_LIBRARIES}
   ${LIBUSB_LIBRARIES}
   gnuradio-ssrptx

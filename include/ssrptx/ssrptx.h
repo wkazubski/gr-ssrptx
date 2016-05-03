@@ -23,7 +23,7 @@
 #define INCLUDED_SSRPTX_SSRPTX_H
 
 #include <ssrptx/api.h>
-#include <gr_sync_block.h>
+#include <gnuradio/sync_block.h>
 
 namespace gr {
   namespace ssrptx {
@@ -33,7 +33,7 @@ namespace gr {
      * \ingroup ssrptx
      *
      */
-    class SSRPTX_API ssrptx : virtual public gr_sync_block
+    class SSRPTX_API ssrptx : virtual public gr::sync_block
     {
      public:
       typedef boost::shared_ptr<ssrptx> sptr;
@@ -46,7 +46,7 @@ namespace gr {
        * class. ssrptx::ssrptx::make is the public interface for
        * creating new instances.
        */
-      static sptr make(const int device_id=0, const int frequency=145500000, const float gain = 1.0);
+      static sptr make(const int device_id=0, const int frequency=102000000, const float gain = 1.0);
     };
 
   } // namespace ssrptx

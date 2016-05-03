@@ -22,7 +22,7 @@
 #ifndef INCLUDED_SSRPTX_API_H
 #define INCLUDED_SSRPTX_API_H
 
-#include <gruel/attributes.h>
+#include <gnuradio/attributes.h>
 
 #ifdef gnuradio_ssrptx_EXPORTS
 #  define SSRPTX_API __GR_ATTR_EXPORT

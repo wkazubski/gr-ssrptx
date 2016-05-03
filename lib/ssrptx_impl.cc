@@ -24,7 +24,7 @@
 
 
 #include <stdio.h>
-#include <gr_io_signature.h>
+#include <gnuradio/io_signature.h>
 #include "ssrptx_impl.h"
 
 #include "sdrtx_standard.h"
@@ -42,9 +42,9 @@ namespace gr {
      * The private constructor
      */
     ssrptx_impl::ssrptx_impl(const int device_id, const int frequency, const float gain)
-      : gr_sync_block("ssrptx",
-		      gr_make_io_signature(1, 1, sizeof (short) * 2),
-		      gr_make_io_signature(0, 0, 0))
+      : gr::sync_block("ssrptx",
+		      gr::io_signature::make(1, 1, sizeof (short) * 2),
+		      gr::io_signature::make(0, 0, 0))
     {
         fprintf(stderr, "device_id=%d, frequency=%d, gain=%.1f\n", device_id, frequency, gain);
         sdrtx_standard_tx *stx = sdrtx_standard_tx::make (device_id, "txS_1024.ihx");

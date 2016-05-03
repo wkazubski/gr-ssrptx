@@ -83,18 +83,10 @@ set(GRC_BLOCKS_DIR      ${GR_PKG_DATA_DIR}/grc/blocks)
 ########################################################################
 # Find gnuradio build dependencies
 ########################################################################
-find_package(Gruel)
-find_package(GnuradioCore)
 find_package(CppUnit)
 find_package(USB)
-
-if(NOT GRUEL_FOUND)
-    message(FATAL_ERROR "Gruel required to compile ssrptx")
-endif()
-
-if(NOT GNURADIO_CORE_FOUND)
-    message(FATAL_ERROR "GnuRadio Core required to compile ssrptx")
-endif()
+set(GR_REQUIRED_COMPONENTS RUNTIME BLOCKS) #############################MODULY
+find_package(Gnuradio "3.7.5" REQUIRED)
 
 if(NOT CPPUNIT_FOUND)
     message(FATAL_ERROR "CppUnit required to compile ssrptx")
@@ -108,12 +100,14 @@ endif()
 # Setup the include and linker paths
 ########################################################################
 include_directories(
+    ${CMAKE_SOURCE_DIR}/lib
     ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_BINARY_DIR}/lib
+    ${CMAKE_BINARY_DIR}/include
     ${Boost_INCLUDE_DIRS}
-    ${GRUEL_INCLUDE_DIRS}
     ${CPPUNIT_INCLUDE_DIRS}
-    ${GNURADIO_CORE_INCLUDE_DIRS}
-    ${LIBUSB_INCLUDE_DIR}
+    ${GNURADIO_RUNTIME_INCLUDE_DIRS}
+    ${GNURADIO_ALL_INCLUDE_DIRS}
 )
 
 link_directories(
@@ -123,6 +117,7 @@ link_directories(
     ${GNURADIO_CORE_LIBRARY_DIRS}
     ${LIBUSB_LIBRARY_DIR}
 )
+
 
 # Set component parameters
 set(GR_SSRPTX_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include CACHE INTERNAL "" FORCE)
